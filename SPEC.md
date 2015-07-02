@@ -12,9 +12,7 @@ The Engine Docker container is provided the source code to analyze at `/code`, w
 
 * `/code`, a directory containing the files to analyze (read-only)
 
-Engines accept a configuration in JSON format passed as an environment variable named `ENGINE_CONFIG`. Methods for reading an environment variable vary between programming languages, but are typically simple. As an example, in Node.js you would parse the config as follows:
-
-    NODE_SNIPPET_HERE
+Engines accept a configuration in JSON format passed as a read-only file mounted at `/config.json`.
 
 Engines can define their own appropriate configuration keys and values, based on
 their needs. A developer invoking a Code Climate engine stores their configuration
