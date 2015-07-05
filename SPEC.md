@@ -24,7 +24,7 @@ Certain keys of the config object will be passed to all engines, and must be res
 
 ## Output
 
-Engines stream static analysis Issues to STDOUT in JSON format. When possible, results should be emitted as soon as they are computed (steaming, not buffered). Documents are terminated by the [null character][null] (`\0` in most programming languages), but can additionally be separated by newlines. See below forth
+Engines stream static analysis Issues to STDOUT in JSON format. When possible, results should be emitted as soon as they are computed (streaming, not buffered). Documents are terminated by the [null character][null] (`\0` in most programming languages), but can additionally be separated by newlines. See below forth
 
 Unstructured information can be printed on STDERR for the purposes of aiding debugging.
 
