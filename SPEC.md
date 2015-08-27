@@ -93,7 +93,7 @@ A Location has one of two formats:
 {
   "path": "path/to/file.css",
   "lines": {
-    "begin: 13,
+    "begin": 13,
     "end": 14
   }
 }
@@ -105,7 +105,7 @@ Or:
 {
   "path": "path/to/file.css",
   "positions": {
-    "begin: Position,
+    "begin": Position,
     "end": Position
   }
 }
