@@ -36,4 +36,6 @@ The most mature implementations of the spec are:
 
 To get started implementing an Engine, first install the **[Code Climate CLI](https://github.com/codeclimate/codeclimate)**. Once that is installed, build your Engine as a Docker image (see the Packaging section of the SPEC). When you are ready to test it locally, run:
 
-    $ TODO
+    $ codeclimate analyze --dev
+
+The `--dev` flag will allow you to use the CLI with docker images that are in your local registry but not yet officially released.
