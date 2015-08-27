@@ -43,7 +43,8 @@ An `issue` represents a single instance of a real or potential code problem, det
   "description": "Unused local variable `foo`",
   "categories": ["Complexity"],
   "location": Location,
-  "remediation_points": 500
+  "remediation_points": 500,
+  "content": Content
 }
 ```
 
@@ -146,6 +147,16 @@ a Position of `{ "line": 2, "column": 3 }` represents the third character on the
 line of the file.
 
 Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fifth_ character in the file. Importantly, the `offset` is from the beginning of the file, not the beginning of a line. Newline characters (and all characters) count when computing an offset.
+
+### Contents
+
+Contents give more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
+
+```
+{
+  "body": "This cop checks that the ABC size of methods is not higher than the configured maximum. The ABC size is based on assignments, branches (method calls), and conditions. See [this page](http://c2.com/cgi/wiki?AbcMetric) for more information on ABC size."
+}
+```
 
 ## Packaging
 
