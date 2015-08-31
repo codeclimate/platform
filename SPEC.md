@@ -116,7 +116,7 @@ All Locations require a `path` property, which is the file path relative to `/co
 
 Locations of the first form (_line-based_ locations) emit a beginning and end line number for the issue, which form a range. Line numbers are 1-based, so the first line of a file would be represented by `1`. Line ranges are evaluated inclusively, so a range of `{"begin": 9, "end": 11}` would represent lines 9, 10 and 11.
 
-Locations in the second form (_position-based_ locations) allow more precision by including refrences to the specific characters that form the source code range representing the issue.
+Locations in the second form (_position-based_ locations) allow more precision by including references to the specific characters that form the source code range representing the issue.
 
 #### Positions
 
