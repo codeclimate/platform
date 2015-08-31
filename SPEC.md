@@ -49,7 +49,7 @@ An `issue` represents a single instance of a real or potential code problem, det
 ```
 
 * `type` -- Required. Must always be "issue".
-* `check_name` -- Required. A unique name representing the static analysis check that emitted this issue. `check_name`
+* `check_name` -- Required. A unique name representing the static analysis check that emitted this issue.
 * `description` -- Required. A string explaining the issue that was detected.
 * `categories` -- Required. At least one category indicating the nature of the issue being reported.
 * `location` -- Required. A Location object representing the place in the source code where the issue was discovered.
