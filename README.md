@@ -23,14 +23,14 @@ to makes it possible to integrate them all into a clear, unified workflow for de
 
 The most mature implementations of the spec are:
 
-* codeclimate-rubocop
-* codeclimate-govet
-* codeclimate-golint
-* codeclimate-gofmt
-* codeclimate-watson
-* codecliamte-rubymotion
-* codecliamte-coffeelint
-* codeclimate-csslint
+* [codeclimate-rubocop](https://github.com/codeclimate/codeclimate-rubocop)
+* [codeclimate-govet](https://github.com/codeclimate-community/codeclimate-govet)
+* [codeclimate-golint](https://github.com/codeclimate-community/codeclimate-golint)
+* [codeclimate-gofmt](https://github.com/codeclimate-community/codeclimate-gofmt)
+* [codeclimate-watson](https://github.com/codeclimate-community/codeclimate-watson)
+* [codecliamte-rubymotion](https://github.com/HipByte/codeclimate-rubymotion)
+* [codecliamte-coffeelint](https://github.com/codeclimate/codeclimate-coffeelint)
+* [codeclimate-csslint](https://github.com/codeclimate/codeclimate-csslint)
 
 ## Working with the spec
 
