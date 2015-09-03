@@ -86,9 +86,7 @@ The baseline remediation points value is 50,000, which is the time it takes to f
 
 ### Locations
 
-Locations refer to ranges of a source code file. All locations are expressed as ranges, and therefore have a beginning and an end (which can be the same).
-
-A Location has one of two formats:
+Locations refer to ranges of a source code file. A Location contains a `path`, a source range, (expressed as `lines` or `positions`), and an optional array of `other_locations`. Here's an example location:
 
 ```
 {
@@ -99,8 +97,7 @@ A Location has one of two formats:
   }
 }
 ```
-
-Or:
+And another:
 
 ```
 {
@@ -109,6 +106,25 @@ Or:
     "begin": Position,
     "end": Position
   }
+}
+```
+
+And one more:
+
+```
+{
+  "path": "path/to/file.css",
+  "lines": {
+    "begin": 13,
+    "end": 14
+  },
+  other_locations: [{
+    "path": "path/to/other_file.css",
+    "lines": {
+      "begin": 15,
+      "end": 16
+    }
+  }]
 }
 ```
 
@@ -147,6 +163,29 @@ a Position of `{ "line": 2, "column": 3 }` represents the third character on the
 line of the file.
 
 Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fifth_ character in the file. Importantly, the `offset` is from the beginning of the file, not the beginning of a line. Newline characters (and all characters) count when computing an offset.
+
+#### Other Locations
+
+Some engines require the ability to refer to other source locations. For this reason, the Location type has an optional `other_locations` field, which is an array of other `Location` items that this issue needs to refer to.
+
+This example uses `other_locations` to refer to another associated css file:
+
+```
+{
+  "path": "path/to/file.css",
+  "lines": {
+    "begin": 13,
+    "end": 14
+  },
+  other_locations: [{
+    "path": "path/to/other_file.css",
+    "lines": {
+      "begin": 15,
+      "end": 16
+    }
+  }]
+}
+```
 
 ### Contents
 
