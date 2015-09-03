@@ -44,16 +44,19 @@ An `issue` represents a single instance of a real or potential code problem, det
   "categories": ["Complexity"],
   "location": Location,
   "remediation_points": 500,
-  "content": Content
+  "content": Content,
+  "other_locations": [Location]
 }
 ```
 
-* `type` -- Required. Must always be "issue".
-* `check_name` -- Required. A unique name representing the static analysis check that emitted this issue.
-* `description` -- Required. A string explaining the issue that was detected.
-* `categories` -- Required. At least one category indicating the nature of the issue being reported.
-* `location` -- Required. A Location object representing the place in the source code where the issue was discovered.
-* `remediation_points` -- Optional. An abstract, relative integer indicating a rough estimate of how long it would take to resolve the reported issue.
+* `type` -- **Required**. Must always be "issue".
+* `check_name` -- **Required**. A unique name representing the static analysis check that emitted this issue.
+* `description` -- **Required**. A string explaining the issue that was detected.
+* `categories` -- **Required**. At least one category indicating the nature of the issue being reported.
+* `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
+* `remediation_points` -- **Optional**. An abstract, relative integer indicating a rough estimate of how long it would take to resolve the reported issue.
+* `content` -- **Optional**. A markdown snippet describing the issue, including deeper explanations and links to other resources.
+* `other_locations` -- **Optional.** An array of `Location` objects useful for engines which highlight more than one source location in an issue.
 
 #### Descriptions
 
@@ -109,25 +112,6 @@ And another:
 }
 ```
 
-And one more:
-
-```
-{
-  "path": "path/to/file.css",
-  "lines": {
-    "begin": 13,
-    "end": 14
-  },
-  other_locations: [{
-    "path": "path/to/other_file.css",
-    "lines": {
-      "begin": 15,
-      "end": 16
-    }
-  }]
-}
-```
-
 All Locations require a `path` property, which is the file path relative to `/code`.
 
 Locations of the first form (_line-based_ locations) emit a beginning and end line number for the issue, which form a range. Line numbers are 1-based, so the first line of a file would be represented by `1`. Line ranges are evaluated inclusively, so a range of `{"begin": 9, "end": 11}` would represent lines 9, 10 and 11.
@@ -164,29 +148,6 @@ line of the file.
 
 Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fifth_ character in the file. Importantly, the `offset` is from the beginning of the file, not the beginning of a line. Newline characters (and all characters) count when computing an offset.
 
-#### Other Locations
-
-Some engines require the ability to refer to other source locations. For this reason, the Location type has an optional `other_locations` field, which is an array of other `Location` items that this issue needs to refer to.
-
-This example uses `other_locations` to refer to another associated css file:
-
-```
-{
-  "path": "path/to/file.css",
-  "lines": {
-    "begin": 13,
-    "end": 14
-  },
-  other_locations: [{
-    "path": "path/to/other_file.css",
-    "lines": {
-      "begin": 15,
-      "end": 16
-    }
-  }]
-}
-```
-
 ### Contents
 
 Contents give more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
@@ -196,6 +157,9 @@ Contents give more information about the issue's check, including a description 
   "body": "This cop checks that the ABC size of methods is not higher than the configured maximum. The ABC size is based on assignments, branches (method calls), and conditions. See [this page](http://c2.com/cgi/wiki?AbcMetric) for more information on ABC size."
 }
 ```
+### Other Locations
+
+Some engines require the ability to refer to other source locations. For this reason, the Issue type has an optional `other_locations` field, which is an array of other `Location` items that this issue needs to refer to.
 
 ## Packaging
 
