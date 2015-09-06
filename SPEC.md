@@ -26,7 +26,7 @@ Certain keys of the config object will be passed to all engines, and must be res
 
 Engines stream static analysis Issues to STDOUT in JSON format. When possible, results should be emitted as soon as they are computed (streaming, not buffered). Each issue is terminated by the [null character][null] (`\0` in most programming languages), but can additionally be separated by newlines.
 
-Unstructured information can be printed on STDERR for the purposes of aiding debugging.
+Unstructured information can be printed on STDERR for the purposes of aiding debugging. Note that STDERR output will only be displayed in the console output when there is a failure, so this approach may not be appropriate for general purpose logging.
 
 An engine must exit with a zero exit code to be considered a success. Any nonzero exit code indicates a fatal error in the static analysis and the results for the entire analysis will be discarded (even if some were previously emitted).
 
