@@ -36,7 +36,7 @@ An engine must exit with a zero exit code to be considered a success. Any nonzer
 
 An `issue` represents a single instance of a real or potential code problem, detected by a static analysis Engine.
 
-```
+```json
 {
   "type": "issue",
   "check_name": "Bug Risk/Unused Variable",
@@ -91,7 +91,7 @@ The baseline remediation points value is 50,000, which is the time it takes to f
 
 Locations refer to ranges of a source code file. A Location contains a `path`, a source range, (expressed as `lines` or `positions`), and an optional array of `other_locations`. Here's an example location:
 
-```
+```json
 {
   "path": "path/to/file.css",
   "lines": {
@@ -102,7 +102,7 @@ Locations refer to ranges of a source code file. A Location contains a `path`, a
 ```
 And another:
 
-```
+```json
 {
   "path": "path/to/file.css",
   "positions": {
@@ -127,18 +127,18 @@ Positions refer to specific characters within a source file, and can be expresse
 
 For example:
 
-```
+```json
 {
-  line: 3,
-  column: 10
+  "line": 3,
+  "column": 10
 }
 ```
 
 Or:
 
-```
+```json
 {
-  offset: 4
+  "offset": 4
 }
 ```
 
@@ -152,7 +152,7 @@ Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fi
 
 Contents give more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
 
-```
+```json
 {
   "body": "This cop checks that the ABC size of methods is not higher than the configured maximum. The ABC size is based on assignments, branches (method calls), and conditions. See [this page](http://c2.com/cgi/wiki?AbcMetric) for more information on ABC size."
 }
