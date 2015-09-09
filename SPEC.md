@@ -27,7 +27,7 @@ These are covered in detail below.
 
 ### Which files to analyze
 
-`include_paths` in `/config.json` contains an Array of file paths and directory paths (relative to the `/code` directory) that defines the range of files that the engine can analyze.  Directories will end with a trailing slash.  For example:
+`include_paths` in `/config.json` contains an array of file paths and directory paths (relative to the `/code` directory) that defines the range of files that the engine can analyze.  Directories will end with a trailing slash.  For example:
 
 ```json
 {
@@ -39,9 +39,9 @@ These are covered in detail below.
 }
 ```
 
-`include_paths` may include paths to files that are irrelevant to the analysis (i.e., `.gitignore` if the engine analyzes Javascript).  It is recommended that the engine filters out irrelevant files as opposed to passing them to the analysis library.
+`include_paths` may include paths to files that are irrelevant to the analysis (i.e., `.gitignore` if the engine analyzes JavaScript).  It is recommended that the engine filters out irrelevant files as opposed to passing them to the analysis library.
 
-`exclude_paths` is deprecated in favor of `include_paths`. `exclude_paths` is an Array of file paths (relative to the `/code` directory) that should be ignored for the purposes of analysis. No Issues should be emitted for excluded files.
+`exclude_paths` is deprecated in favor of `include_paths`. `exclude_paths` is an array of file paths (relative to the `/code` directory) that should be ignored for the purposes of analysis. No Issues should be emitted for excluded files.
 
 ## Output
 
