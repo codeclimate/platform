@@ -18,9 +18,30 @@ Engines can define their own appropriate configuration keys and values, based on
 their needs. A developer invoking a Code Climate engine stores their configuration
 for all engines in a single `.codeclimate.yml` file. The Code Climate CLI (and other tools compatible with Code Climate Engines) parse and interpret the YAML file to produce a single, simple JSON config object for each engine.
 
-Certain keys of the config object will be passed to all engines, and must be respected in order to conform with the specification. Today, there is only one such key:
+Certain keys of the config object will be passed to all engines, and must be respected in order to conform with the specification. There are two keys, both related to which files to analyze:
 
-* `exclude_paths` -- An Array of file paths (relative to the `/code` directory) that should be ignored for the purposes of analysis. No Issues should be emitted for excluded files.
+* `include_paths`
+* `exclude_paths` (deprecated)
+
+These are covered in detail below.
+
+### Which files to analyze
+
+`include_paths` in `/config.json` contains an array of file paths and directory paths (relative to the `/code` directory) that defines the range of files that the engine can analyze. Directories will end with a trailing slash. For example:
+
+```json
+{
+  "include_paths":[
+    ".gitignore",
+    "app/",
+    "test/"
+  ]
+}
+```
+
+`include_paths` may include paths to files that are irrelevant to the analysis (i.e., `.gitignore` if the engine only analyzes JavaScript). Engines are responsible for filtering out irrelevant files.
+
+`exclude_paths` is deprecated in favor of `include_paths`. `exclude_paths` is an array of file paths (relative to the `/code` directory) that should be ignored for the purposes of analysis. No Issues should be emitted for excluded files.
 
 ## Output
 
