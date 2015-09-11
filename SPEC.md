@@ -39,7 +39,7 @@ These are covered in detail below.
 }
 ```
 
-`include_paths` may include paths to files that are irrelevant to the analysis (i.e., `.gitignore` if the engine analyzes JavaScript). It is recommended that the engine filters out irrelevant files as opposed to passing them to the analysis library.
+`include_paths` may include paths to files that are irrelevant to the analysis (i.e., `.gitignore` if the engine only analyzes JavaScript). Engines are responsible for filtering out irrelevant files.
 
 `exclude_paths` is deprecated in favor of `include_paths`. `exclude_paths` is an array of file paths (relative to the `/code` directory) that should be ignored for the purposes of analysis. No Issues should be emitted for excluded files.
 
