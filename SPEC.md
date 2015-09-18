@@ -229,10 +229,24 @@ the builds of these images. The `Dockerfile` must follow these specifications:
 * The image must not include any `EXPOSE` directives
 * The image must not include any `ONBUILD` directives
 
-Here is an example of a `Dockerfile` that follows the specifications for a Go program:
+Here is an example of a `Dockerfile` that follows the specifications for an engine written in Node.js:
 
 ```
-TODO Dockerfile EXAMPLE Here
+FROM node
+
+MAINTAINER Michael R. Bernstein
+
+RUN useradd -u 9000 -r -s /bin/false app
+
+RUN npm install glob
+
+WORKDIR /code
+COPY . /usr/src/app
+
+USER app
+VOLUME /code
+
+CMD ["/usr/src/app/bin/fixme"]
 ```
 
 ## Resource Restrictions
