@@ -1,5 +1,4 @@
 # Code Climate Engine Specification
-## Version 0.1
 
 **Note: This specification is a living, versioned document. We welcome your participation and appreciate your patience as we finalize the platform.**
 
@@ -187,27 +186,31 @@ Some engines require the ability to refer to other source locations. For this re
 
 This specification is versioned. The current version is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION). Engines declare the version of the specification they are compatible with in the manifest file, described below.
 
-## Manifest File
+## Engine Config File
 
-All engines must include a `manifest.json` file at `/manifest.json`. This file, known as the manifest, includes information that is necessary for the analysis runtime. Here is an example of a manifest:
+All engines must include a `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example config:
 
 ```
 {
   "name": "govet",
+  "description": "govet was created by the Go team at Google, and examines Go source code and reports suspicious constructs, and potential bugs.",
   "maintainer": {
     "name": "Michael R. Bernstein",
     "email": "mrb@codeclimate.com",
   },
+  "version": 3,
   "spec_version": "0.0.1",
 }
 ```
 
 The fields in the manifest include:
 
-* `name` (`String`) - the name of the package.
-* `maintainer` (`Object`)
+* `name` (`String`) - the name of the package
+* `description` (`String`) - a description of the engine
+* `maintainer` (`Object`) - data about the engine maintainer
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
+* `version` (`Integer`) - engine version
 * `spec_version` (`String`) - the most recent version of the specification which this engine supports
 
 ## Packaging
