@@ -211,7 +211,7 @@ The fields in the manifest include:
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
 * `version` (`Integer`) - engine version
-* `spec_version` (`String`) - the most recent version of the specification which this engine supports
+* `spec_version` (`String`) - the version of the specification which this engine supports
 
 ## Packaging
 
