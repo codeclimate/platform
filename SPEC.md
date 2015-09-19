@@ -188,7 +188,7 @@ This specification is versioned. The current version is [in the repository](http
 
 ## Engine Config File
 
-All engines must include a `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example config:
+All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example config:
 
 ```
 {
@@ -198,7 +198,7 @@ All engines must include a `engine.json` file at `/engine.json`. This file inclu
     "name": "Michael R. Bernstein",
     "email": "mrb@codeclimate.com",
   },
-  "version": 3,
+  "version": "da5a2077",
   "spec_version": "0.0.1",
 }
 ```
@@ -210,7 +210,7 @@ The fields in the manifest include:
 * `maintainer` (`Object`) - data about the engine maintainer
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
-* `version` (`Integer`) - engine version
+* `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
 * `spec_version` (`String`) - the version of the specification which this engine supports
 
 ## Packaging
