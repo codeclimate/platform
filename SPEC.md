@@ -1,6 +1,6 @@
-# Code Climate Engine specification
+# Code Climate Engine Specification
 
-**Note: This specification is a draft. We welcome your suggestions for improvement, and there may be bumps along the way!**
+**Note: This specification is a living, versioned document. We welcome your participation and appreciate your patience as we finalize the platform.**
 
 ## Overview
 
@@ -181,6 +181,37 @@ Contents give more information about the issue's check, including a description 
 ### Other Locations
 
 Some engines require the ability to refer to other source locations. For this reason, the Issue type has an optional `other_locations` field, which is an array of other `Location` items that this issue needs to refer to.
+
+## Versioning
+
+This specification is versioned. The current version is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION). Engines declare the version of the specification they are compatible with in the manifest file, described below.
+
+## Engine Config File
+
+All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example config:
+
+```
+{
+  "name": "govet",
+  "description": "govet was created by the Go team at Google, and examines Go source code and reports suspicious constructs, and potential bugs.",
+  "maintainer": {
+    "name": "Michael R. Bernstein",
+    "email": "mrb@codeclimate.com",
+  },
+  "version": "da5a2077",
+  "spec_version": "0.0.1",
+}
+```
+
+The fields in the manifest include:
+
+* `name` (`String`) - the name of the package
+* `description` (`String`) - a description of the engine
+* `maintainer` (`Object`) - data about the engine maintainer
+  * `name` (`String`) - the name of the maintainer
+  * `email` (`String`) - the email address of the maintainer
+* `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
+* `spec_version` (`String`) - the version of the specification which this engine supports
 
 ## Packaging
 
