@@ -77,7 +77,7 @@ An `issue` represents a single instance of a real or potential code problem, det
 * `content` -- **Optional**. A markdown snippet describing the issue, including deeper explanations and links to other resources.
 * `categories` -- **Required**. At least one category indicating the nature of the issue being reported.
 * `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
-* `other_locations` -- **Optional.** An array of `Location` objects useful for engines which highlight more than one source location in an issue.
+* `trace` -- **Optional.** A `Trace` object representing other interesting source code locations related to this issue.
 * `remediation_points` -- **Optional**. An integer indicating a rough estimate of how long it would take to resolve the reported issue.
 * `severity` -- **Optional**. A `Severity` string (`info`, `normal`, or `critical`) describing the potential impact of the issue found.
 
@@ -180,9 +180,35 @@ Contents give more information about the issue's check, including a description 
   "body": "This cop checks that the ABC size of methods is not higher than the configured maximum. The ABC size is based on assignments, branches (method calls), and conditions. See [this page](http://c2.com/cgi/wiki?AbcMetric) for more information on ABC size."
 }
 ```
-### Other Locations
+### Source Code Traces
 
-Some engines require the ability to refer to other source locations. For this reason, the Issue type has an optional `other_locations` field, which is an array of other `Location` items that this issue needs to refer to.
+Some engines require the ability to refer to other source locations in describing an issue. For this reason, an `Issue` object can have an associated `Trace`, a data structure meant to represent ordered or unordered lists of source code locations. A `Trace` has the following fields:
+
+* `locations` -- **[Location] - Required**. An array of `Location` objects.
+* `stacktrace` -- **Boolean - Optional**. When `true`, this `Trace` object will be treated like an ordered stacktrace by the CLI and the Code Climate UI.
+
+An example trace:
+
+```json
+"trace": {
+  "locations": [{
+    "path": "path/to/file.css",
+      "lines": {
+        "begin": 13,
+        "end": 14
+      }
+    },
+    {
+      "path": "path/to/file.css",
+      "lines": {
+        "begin": 19,
+        "end": 20
+      }
+    }],
+  "stacktrace": true
+}
+
+```
 
 ## Versioning
 
