@@ -62,22 +62,24 @@ An `issue` represents a single instance of a real or potential code problem, det
   "type": "issue",
   "check_name": "Bug Risk/Unused Variable",
   "description": "Unused local variable `foo`",
+  "content": Content,
   "categories": ["Complexity"],
   "location": Location,
+  "other_locations": [Location],
   "remediation_points": 500,
-  "content": Content,
-  "other_locations": [Location]
+  "severity": Severity
 }
 ```
 
 * `type` -- **Required**. Must always be "issue".
 * `check_name` -- **Required**. A unique name representing the static analysis check that emitted this issue.
 * `description` -- **Required**. A string explaining the issue that was detected.
+* `content` -- **Optional**. A markdown snippet describing the issue, including deeper explanations and links to other resources.
 * `categories` -- **Required**. At least one category indicating the nature of the issue being reported.
 * `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
-* `remediation_points` -- **Optional**. An abstract, relative integer indicating a rough estimate of how long it would take to resolve the reported issue.
-* `content` -- **Optional**. A markdown snippet describing the issue, including deeper explanations and links to other resources.
 * `other_locations` -- **Optional.** An array of `Location` objects useful for engines which highlight more than one source location in an issue.
+* `remediation_points` -- **Optional**. An integer indicating a rough estimate of how long it would take to resolve the reported issue.
+* `severity` -- **Optional**. A `Severity` string (`info`, `normal`, or `critical`) describing the potential impact of the issue found.
 
 #### Descriptions
 
