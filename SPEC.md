@@ -251,6 +251,10 @@ VOLUME /code
 CMD ["/usr/src/app/bin/fixme"]
 ```
 
+## Naming Convention
+
+Your `Docker` image must be built with the name `codeclimate/codeclimate-YOURENGINENAME`.
+
 ## Resource Restrictions
 
 In order to ensure analysis runs reliably across a variety of systems, Engines
