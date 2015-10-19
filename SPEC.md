@@ -129,8 +129,14 @@ And another:
 {
   "path": "path/to/file.css",
   "positions": {
-    "begin": Position,
-    "end": Position
+    "begin": {
+      "line": 3,
+      "column": 10
+    },
+    "end": {
+      "line": 4,
+      "column": 12
+    }
   }
 }
 ```
