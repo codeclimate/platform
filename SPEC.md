@@ -196,7 +196,7 @@ This specification is versioned. The current version is [in the repository](http
 
 ## Engine Specification File
 
-All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example config:
+All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example specification:
 
 ```
 {
