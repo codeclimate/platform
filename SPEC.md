@@ -194,7 +194,7 @@ Some engines require the ability to refer to other source locations. For this re
 
 This specification is versioned. The current version is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION). Engines declare the version of the specification they are compatible with in the manifest file, described below.
 
-## Engine Config File
+## Engine Specification File
 
 All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example config:
 
@@ -211,7 +211,7 @@ All engines must include an `engine.json` file at `/engine.json`. This file incl
 }
 ```
 
-The fields in the manifest include:
+The following fields are declared the specification file, and all are required:
 
 * `name` (`String`) - the name of the package
 * `description` (`String`) - a description of the engine
