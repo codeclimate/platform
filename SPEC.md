@@ -191,7 +191,7 @@ Contents give more information about the issue's check, including a description 
 Some engines require the ability to refer to other source locations in describing an issue. For this reason, an `Issue` object can have an associated `Trace`, a data structure meant to represent ordered or unordered lists of source code locations. A `Trace` has the following fields:
 
 * `locations` -- **[Location] - Required**. An array of `Location` objects.
-* `stacktrace` -- **Boolean - Optional**. When `true`, this `Trace` object will be treated like an ordered stacktrace by the CLI and the Code Climate UI.
+* `stacktrace` -- **Boolean - Optional **. *Default: false* When `true`, this `Trace` object will be treated like an ordered stacktrace by the CLI and the Code Climate UI.
 
 An example trace:
 
