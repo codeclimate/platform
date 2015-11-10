@@ -18,6 +18,7 @@ Your engine can be configured to run tests by supplying path information in your
     "name": "Michael R. Bernstein",
     "email": "mrb@codeclimate.com"
   },
+  "languages": ["*"],
   "test_paths": [
     "/usr/src/app/test/integration/"
   ]

@@ -233,6 +233,9 @@ All engines must include an `engine.json` file at `/engine.json`. This file incl
     "email": "mrb@codeclimate.com",
   },
   "version": "da5a2077",
+  "test_paths": [
+    "/usr/src/app/test/integration/"
+  ],
   "spec_version": "0.0.1",
 }
 ```
@@ -245,6 +248,7 @@ The following fields are declared the specification file, and all are required:
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
 * `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
+* `test_paths` (["String"]) - an array of test paths. More information available in our [testing documentation](TESTING.md)
 * `spec_version` (`String`) - the version of the specification which this engine supports
 
 ## Packaging
