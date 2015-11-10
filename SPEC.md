@@ -245,9 +245,13 @@ The following fields are declared the specification file, and all are required:
 * `maintainer` (`Object`) - data about the engine maintainer
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
-* `languages` (`[String]`) - an array of programming languages that this engine is meant to analyze. Language agnostic engines can specify `"*"`
+* `languages` (`[String]`) - an array of programming languages that this engine is meant to analyze. **See note about possible values for `languages` below**
 * `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
 * `spec_version` (`String`) - the version of the specification which this engine supports
+
+The `languages` key can have the following values:
+- `*` - all possible languages, for language agnostic analysis engines
+- One or more of the following accepted languages: `CSS, Chef, Clojure, CoffeeScript, Go, Haskell, Java, JavaScript, Node.js, PHP, Python, Rails, Ruby, RubyMotion, SCSS, Scala, Shell`
 
 ## Packaging
 
