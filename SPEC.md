@@ -307,3 +307,7 @@ provided by Docker.
 * Engines are always ran as a user `app` with UID and GID of 9000, and never `root`.
 
 [null]: http://en.wikipedia.org/wiki/Null_character
+
+## Testing
+
+The `codeclimate` CLI has facilities to help you test that your engine conforms to the above specification. Check out our [testing documentation here.](TESTING.md)
