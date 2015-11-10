@@ -232,6 +232,7 @@ All engines must include an `engine.json` file at `/engine.json`. This file incl
     "name": "Michael R. Bernstein",
     "email": "mrb@codeclimate.com",
   },
+  "languages" : ["Go"],
   "version": "da5a2077",
   "spec_version": "0.0.1",
 }
@@ -244,6 +245,7 @@ The following fields are declared the specification file, and all are required:
 * `maintainer` (`Object`) - data about the engine maintainer
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
+* `languages` (`[String]`) - an array of programming languages that this engine is meant to analyze. Language agnostic engines can specify `"*"`
 * `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
 * `spec_version` (`String`) - the version of the specification which this engine supports
 
