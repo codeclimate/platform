@@ -232,6 +232,7 @@ All engines must include an `engine.json` file at `/engine.json`. This file incl
     "name": "Michael R. Bernstein",
     "email": "mrb@codeclimate.com",
   },
+  "languages" : ["Go"],
   "version": "da5a2077",
   "spec_version": "0.0.1",
 }
@@ -244,8 +245,15 @@ The following fields are declared the specification file, and all are required:
 * `maintainer` (`Object`) - data about the engine maintainer
   * `name` (`String`) - the name of the maintainer
   * `email` (`String`) - the email address of the maintainer
+* `languages` (`[String]`) - an array of programming languages that this engine is meant to analyze. **See note about possible values for `languages` below**
 * `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
 * `spec_version` (`String`) - the version of the specification which this engine supports
+
+The `languages` key can have the following values:
+- `*` - all possible languages, for language agnostic analysis engines
+- Any language listed as keys in the `github/linguist` repository's data file, which [can be found here](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+- Note that we follow these spellings exactly, so while [`JavaScript` is a valid spelling of that language](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml#L1642), `javascript` is not.
+- Some commonly used languages spelled properly are: `CSS, Clojure, CoffeeScript, Go, Haskell, Java, JavaScript, PHP, Python, Ruby, SCSS, Scala, Shell`
 
 ## Packaging
 
