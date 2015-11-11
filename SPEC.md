@@ -234,6 +234,9 @@ All engines must include an `engine.json` file at `/engine.json`. This file incl
   },
   "languages" : ["Go"],
   "version": "da5a2077",
+  "test_paths": [
+    "/usr/src/app/test/integration/"
+  ],
   "spec_version": "0.0.1",
 }
 ```
@@ -247,6 +250,7 @@ The following fields are declared the specification file, and all are required:
   * `email` (`String`) - the email address of the maintainer
 * `languages` (`[String]`) - an array of programming languages that this engine is meant to analyze. **See note about possible values for `languages` below**
 * `version` (`String`) - engine version, an arbitrary string maintained by the engine maintainer
+* `test_paths` (["String"]) - an array of test paths. More information available in our [testing documentation](TESTING.md)
 * `spec_version` (`String`) - the version of the specification which this engine supports
 
 The `languages` key can have the following values:
@@ -315,3 +319,7 @@ provided by Docker.
 * Engines are always ran as a user `app` with UID and GID of 9000, and never `root`.
 
 [null]: http://en.wikipedia.org/wiki/Null_character
+
+## Testing
+
+The `codeclimate` CLI has facilities to help you test that your engine conforms to the above specification. Check out our [testing documentation here.](TESTING.md)
