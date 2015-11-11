@@ -251,7 +251,9 @@ The following fields are declared the specification file, and all are required:
 
 The `languages` key can have the following values:
 - `*` - all possible languages, for language agnostic analysis engines
-- One or more of the following accepted languages: `CSS, Chef, Clojure, CoffeeScript, Go, Haskell, Java, JavaScript, Node.js, PHP, Python, Rails, Ruby, RubyMotion, SCSS, Scala, Shell`
+- Any language listed as keys in the `github/linguist` repository's data file, which [can be found here](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+- Note that we follow these spellings exactly, so while [`JavaScript` is a valid spelling of that language](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml#L1642), `javascript` is not.
+- Some commonly used languages spelled properly are: `CSS, Clojure, CoffeeScript, Go, Haskell, Java, JavaScript, PHP, Python, Ruby, SCSS, Scala, Shell`
 
 ## Packaging
 
