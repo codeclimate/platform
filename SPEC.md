@@ -224,17 +224,17 @@ This specification is versioned. The current version is [in the repository](http
 
 All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example specification:
 
-```
+```json
 {
   "name": "govet",
   "description": "govet was created by the Go team at Google, and examines Go source code and reports suspicious constructs, and potential bugs.",
   "maintainer": {
     "name": "Michael R. Bernstein",
-    "email": "mrb@codeclimate.com",
+    "email": "mrb@codeclimate.com"
   },
   "languages" : ["Go"],
   "version": "da5a2077",
-  "spec_version": "0.0.1",
+  "spec_version": "0.0.1"
 }
 ```
 
