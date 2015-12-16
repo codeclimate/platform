@@ -98,6 +98,7 @@ Issues must be associated with one or more categories. Valid issue `categories` 
 - `Compatibility` -- TODO describe me
 - `Complexity` -- TODO describe me
 - `Duplication` -- TODO describe me
+- `Performance` -- TODO describe me
 - `Security` -- TODO describe me
 - `Style` -- TODO describe me
 
