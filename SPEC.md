@@ -66,7 +66,7 @@ An `issue` represents a single instance of a real or potential code problem, det
   "categories": ["Complexity"],
   "location": Location,
   "other_locations": [Location],
-  "remediation_points": 500,
+  "remediation_points": 50000,
   "severity": Severity,
   "fingerprint": "abcd1234"
 }
