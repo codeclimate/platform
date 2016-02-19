@@ -221,7 +221,7 @@ An example trace:
 
 ## Versioning
 
-This specification is versioned. The current version is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION). Engines declare the version of the specification they are compatible with in the manifest file, described below.
+This specification is versioned. The current version is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION). Engines declare the version of the specification they are compatible with in the manifest file, described below. This project follows [Semantic Versioning](http://semver.org/).
 
 ## Engine Specification File
 
