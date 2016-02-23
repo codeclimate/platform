@@ -93,14 +93,30 @@ Descriptions support one type of basic Markdown formatting, which is the use of 
 
 Issues must be associated with one or more categories. Valid issue `categories` are:
 
-- `Bug Risk` -- TODO describe me
-- `Clarity` -- TODO describe me
-- `Compatibility` -- TODO describe me
-- `Complexity` -- TODO describe me
-- `Duplication` -- TODO describe me
-- `Performance` -- TODO describe me
-- `Security` -- TODO describe me
-- `Style` -- TODO describe me
+ * `Bug Risk` &mdash; the meaning is likely to not be what the author intended
+   * Code example: `if (a = 5)`, the author may have meant `==`
+   * Non-code example: `I like there music`, the author probably meant `their`
+ * `Clarity` &mdash; the meaning is unclear
+   * Code example: `a = ++x--`
+   * Non-code example: `I, to see a friend, am going town.`
+ * `Compatibility` &mdash; the meaning has changed and is no longer valid
+   * Code example: using `UIAlertView` in iOS 9
+   * Non-code example: an Excel XLSX file, if only XLS is allowed
+ * `Complexity` &mdash; the meaning should be broken into smaller pieces
+   * Code example: a four-page long function
+   * Non-code example: a flowchart with lines much longer than they must be
+ * `Duplication` &mdash; unnecessary duplication was found
+   * Code example: something that violates DRY principle
+   * Non-code example: two images in a directory are identical
+ * `Performance` &mdash; an inefficient approach was used
+   * Code example: `for (i=0; i<1000000; count+=1)`
+   * Non-code example: *I can't think of one*
+ * `Security` &mdash; a situation may allow access to something that should be allowed
+   * Code example: `echo $_POST['name']`
+   * Non-code example: `... or you can use _NSAKEY to sign the binary`
+ * `Style` &mdash; the style could be improved
+   * Code example: `if ((((((a == (((5)))))))))`
+   * Non-code example: an image uses colors inconsistent with style guide
 
 #### Remediation Points
 
