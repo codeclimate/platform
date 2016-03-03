@@ -296,8 +296,8 @@ Your `Docker` image must be built with the name `codeclimate/codeclimate-YOURENG
 In order to ensure analysis runs reliably across a variety of systems, Engines
 must conform to some basic resource restrictions:
 
-* The Docker image for an Engine must not exceed 250MB, including all layers
-* The combined total RSS memory usage my all processes within the Docker container must not exceed 256MB at any time.
+* The Docker image for an Engine must not exceed 512MB, including all layers.
+* The combined total RSS memory usage by all processes within the Docker container must not exceed 1GB at any time.
 * All Engines must complete and exit within 10 minutes.
 
 ## Security Restrictions
