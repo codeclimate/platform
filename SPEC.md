@@ -41,11 +41,11 @@ The `include_paths` key will always be present in `config.json`, and must be use
 * Engines must stream Issues to `STDOUT` in JSON format.
 * When possible, results should be emitted as soon as they are computed (streamed, not buffered).
 * Each issue must be terminated by the [null character][null] (`\0` in most programming languages), but can additionally be separated by newlines.
-* Unstructured information can be printed on STDERR for the purposes of aiding debugging.
-  * *Note that STDERR output will only be displayed in console output when there is a failure, so this approach is not appropriate for general purpose logging.*
+* Unstructured information can be printed on `STDERR` for the purposes of aiding debugging.
+  * *Note that `STDERR` output will only be displayed in console output when there is a failure, unless `codeclimate analyze` is run with the `CODECLIMATE_DEBUG` environment variable, e.g. `CODECLIMATE_DEBUG=1 codeclimate analyze`
 * Engines must exit with a zero exit code unless a fatal error in the process occurs.
   * *Note that an engine finding and emitting issues is expected, and not a fatal error - this means that if your engine finds issues, it should still in all cases exit with code zero.*
-  * *Note that all results will be discared and the analysis failed if an engine exits with a non-zero exit code.*
+  * *Note that all results will be discard and the analysis failed if an engine exits with a non-zero exit code.*
 
 ## Data Types
 
