@@ -311,6 +311,6 @@ provided by Docker.
 * The root filesystem (`/`) is mounted read-only. A `/tmp` volume is mounted read-write for temporary file storage during the engine run.
 * Engines run with no network access (`--net=none` in Docker). They must not rely on making any external network calls.
 * Engines run with the minimal set of Linux capabilities (`--cap-drop all` in Docker)
-* Engines are always ran as a user `app` with UID and GID of 9000, and never `root`.
+* Engines are always run as a user `app` with UID and GID of 9000, and never `root`.
 
 [null]: http://en.wikipedia.org/wiki/Null_character
