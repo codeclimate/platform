@@ -263,7 +263,7 @@ must conform to some basic resource restrictions:
 Engines run in a secured runtime environment, within container-based virtualization
 provided by Docker.
 
-* The root filesystem (`/`) is mounted read-only. A `/tmp` volume is mounted read-write for temporary file storage during the engine run.
+* The `/code` directory, containing the files to analyze, & `/config.json`, containing configuration for the engine to use, are mounted read-only.
 * Engines run with no network access (`--net=none` in Docker). They must not rely on making any external network calls.
 * Engines run with the minimal set of Linux capabilities (`--cap-drop all` in Docker)
 * Engines are always run as a user `app` with UID and GID of 9000, and never `root`.
