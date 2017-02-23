@@ -1,12 +1,46 @@
 # Code Climate Engine Specification
 
-**Note: This specification is a living, versioned document. We welcome your participation and appreciate your patience as we finalize the platform.**
+## Abstract
+
+This specification describes the contract that must be followed by an engine to ensure compatability with the rest of the tools in the Code Climate static analysis ecosystem. It defines several aspects of Engine operation including input, outputs, packaging, as well as performance and security restrictions.
+
+## Status of this document
+
+The current version of this specification is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION).  This specification is versioned using [Semantic Versioning](http://semver.org/).
+
+Engines declare the version of the specification they are compatible with in the engine specification file, described below.
+
+We welcome your participation and appreciate your patience as we finalize the platform.
+
+## Table of contents
+
+- [Overview](#overview)
+- [Engine execution](#engine-execution)
+    - [Input](#input)
+        - [Which files to analyze](#which-files-to-analyze)
+    - [Output](#output)
+    - [Data types](#data-types)
+        - [Issues](#issues)
+            - [Descriptions](#descriptions)
+            - [Categories](#categories)
+            - [Remediation points](#remediation-points)
+        - [Locations](#locations)
+            - [Positions](#positions)
+        - [Contents](#contents)
+        - [Source code traces](#source-code-traces)
+    - [Resource restrictions](#resource-restrictions)
+    - [Security restrictions](#security-restrictions)
+- [Engine specification file](#engine-specification-file)
+- [Packaging](#packaging)
+- [Naming convention](#naming-convention)
 
 ## Overview
 
 A Code Climate engine is a standalone program which accepts a configuration and source code, and returns static analysis results. It can be implemented in any programming language, and is distributed as a Docker image.
 
-## Input
+## Engine execution
+
+### Input
 
 The Engine Docker container is provided the source code to analyze at `/code`, which is mounted as a read-only volume.
 
@@ -20,7 +54,7 @@ for all engines in a single `.codeclimate.yml` file. The Code Climate CLI (and o
 
 The `include_paths` key will always be present in `config.json`, and must be used by engines to limit which files they will analyze. Details of this key are below.
 
-### Which files to analyze
+#### Which files to analyze
 
 `include_paths` in `/config.json` contains an array of file paths and directory paths (relative to the `/code` directory) that defines the range of files that the engine can analyze. Directories will end with a trailing slash. For example:
 
@@ -36,7 +70,7 @@ The `include_paths` key will always be present in `config.json`, and must be use
 
 `include_paths` may include paths to files that are irrelevant to the analysis (i.e., `.gitignore` if the engine only analyzes JavaScript). Engines are responsible for filtering out irrelevant files.
 
-## Output
+### Output
 
 * Engines must stream Issues to `STDOUT` in JSON format.
 * When possible, results should be emitted as soon as they are computed (streamed, not buffered).
@@ -47,9 +81,9 @@ The `include_paths` key will always be present in `config.json`, and must be use
   * *Note that an engine finding and emitting issues is expected, and not a fatal error - this means that if your engine finds issues, it should still in all cases exit with code zero.*
   * *Note that all results will be discard and the analysis failed if an engine exits with a non-zero exit code.*
 
-## Data Types
+### Data Types
 
-### Issues
+#### Issues
 
 An `issue` represents a single instance of a real or potential code problem, detected by a static analysis Engine.
 
@@ -79,13 +113,13 @@ An `issue` represents a single instance of a real or potential code problem, det
 * `severity` -- **Optional**. A `Severity` string (`info`, `normal`, or `critical`) describing the potential impact of the issue found.
 * `fingerprint` -- **Optional**. A unique, deterministic identifier for the specific issue being reported to allow a user to exclude it from future analyses.
 
-#### Descriptions
+##### Descriptions
 
 Descriptions must be a single line of text (no newlines), with no HTML formatting contained within. Ideally, descriptions should be fewer than 70 characters long, but this is not a requirement.
 
 Descriptions support one type of basic Markdown formatting, which is the use of backticks to produce inline &lt;code&gt; tags that are rendered in a fixed width font. Identifiers like class, method and variable names should be wrapped within backticks whenever possible for optimal rendering by tools that consume Engines data.
 
-#### Categories
+##### Categories
 
 Issues must be associated with one or more categories. Valid issue `categories` are:
 
@@ -98,7 +132,7 @@ Issues must be associated with one or more categories. Valid issue `categories` 
 - `Security` -- TODO describe me
 - `Style` -- TODO describe me
 
-#### Remediation Points
+##### Remediation points
 
 Remediation points are an abstract, relative scale to express the estimated time it would take for a developer to resolve an issue. They are abstract because they do not map directly to absolute time durations like minutes and hours. Providing remediation points is optional, but they can be useful to certain tools that consume Engines data and generate reports related to the level of effort required to improve a codebase (like CodeClimate.com).
 
@@ -109,7 +143,7 @@ Here are some guidelines to compute appropriate remediation points values for an
 
 The baseline remediation points value is 50,000, which is the time it takes to fix a trivial code style issue like a missing semicolon on a single line, including the time for the developer to open the code, make the change, and confidently commit the fix. All other remediation points values are expressed in multiples of that Basic Remediation Point Value.
 
-### Locations
+#### Locations
 
 Locations refer to ranges of a source code file. A Location contains a `path`, a source range, (expressed as `lines` or `positions`), and an optional array of `other_locations`. Here's an example location:
 
@@ -146,7 +180,7 @@ Locations of the first form (_line-based_ locations) emit a beginning and end li
 
 Locations in the second form (_position-based_ locations) allow more precision by including references to the specific characters that form the source code range representing the issue.
 
-#### Positions
+##### Positions
 
 Positions refer to specific characters within a source file, and can be expressed in two ways:
 
@@ -176,16 +210,16 @@ line of the file.
 
 Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fifth_ character in the file. Importantly, the `offset` is from the beginning of the file, not the beginning of a line. Newline characters (and all characters) count when computing an offset.
 
-### Contents
+#### Contents
 
-Contents give more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
+Content gives more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
 
 ```json
 {
   "body": "This cop checks that the ABC size of methods is not higher than the configured maximum. The ABC size is based on assignments, branches (method calls), and conditions. See [this page](http://c2.com/cgi/wiki?AbcMetric) for more information on ABC size."
 }
 ```
-### Source Code Traces
+#### Source code traces
 
 Some engines require the ability to refer to other source locations in describing an issue. For this reason, an `Issue` object can have an associated `Trace`, a data structure meant to represent ordered or unordered lists of source code locations. A `Trace` has the following fields:
 
@@ -215,11 +249,26 @@ An example trace:
 
 ```
 
-## Versioning
+### Resource restrictions
 
-This specification is versioned. The current version is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION). Engines declare the version of the specification they are compatible with in the manifest file, described below. This project follows [Semantic Versioning](http://semver.org/).
+In order to ensure analysis runs reliably across a variety of systems, Engines
+must conform to some basic resource restrictions:
 
-## Engine Specification File
+* The Docker image for an Engine must not exceed 512MB, including all layers.
+* The combined total RSS memory usage by all processes within the Docker container must not exceed 1GB at any time.
+* All Engines must complete and exit within 10 minutes.
+
+### Security restrictions
+
+Engines run in a secured runtime environment, within container-based virtualization
+provided by Docker.
+
+* The `/code` directory, containing the files to analyze, & `/config.json`, containing configuration for the engine to use, are mounted read-only.
+* Engines run with no network access (`--net=none` in Docker). They must not rely on making any external network calls.
+* Engines run with the minimal set of Linux capabilities (`--cap-drop all` in Docker)
+* Engines are always run as a user `app` with UID and GID of 9000, and never `root`.
+
+## Engine specification file
 
 All engines must include an `engine.json` file at `/engine.json`. This file includes information that is necessary for the analysis runtime and metadata about the engine. Here is an example specification:
 
@@ -290,27 +339,9 @@ VOLUME /code
 CMD ["/usr/src/app/bin/fixme"]
 ```
 
-## Naming Convention
+## Naming convention
 
 Your `Docker` image must be built with the name `codeclimate/codeclimate-YOURENGINENAME`.
 
-## Resource Restrictions
-
-In order to ensure analysis runs reliably across a variety of systems, Engines
-must conform to some basic resource restrictions:
-
-* The Docker image for an Engine must not exceed 512MB, including all layers.
-* The combined total RSS memory usage by all processes within the Docker container must not exceed 1GB at any time.
-* All Engines must complete and exit within 10 minutes.
-
-## Security Restrictions
-
-Engines run in a secured runtime environment, within container-based virtualization
-provided by Docker.
-
-* The root filesystem (`/`) is mounted read-only. A `/tmp` volume is mounted read-write for temporary file storage during the engine run.
-* Engines run with no network access (`--net=none` in Docker). They must not rely on making any external network calls.
-* Engines run with the minimal set of Linux capabilities (`--cap-drop all` in Docker)
-* Engines are always run as a user `app` with UID and GID of 9000, and never `root`.
 
 [null]: http://en.wikipedia.org/wiki/Null_character
