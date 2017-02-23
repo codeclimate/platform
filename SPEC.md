@@ -8,7 +8,7 @@ This specification describes the contract that must be followed by an engine to 
 
 The current version of this specification is [in the repository](https://github.com/codeclimate/spec/blob/master/VERSION).  This specification is versioned using [Semantic Versioning](http://semver.org/).
 
-Engines declare the version of the specification they are compatible with in the manifest file, described below.
+Engines declare the version of the specification they are compatible with in the engine specification file, described below.
 
 We welcome your participation and appreciate your patience as we finalize the platform.
 
