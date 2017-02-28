@@ -110,7 +110,7 @@ An `issue` represents a single instance of a real or potential code problem, det
 * `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
 * `trace` -- **Optional.** A `Trace` object representing other interesting source code locations related to this issue.
 * `remediation_points` -- **Optional**. An integer indicating a rough estimate of how long it would take to resolve the reported issue.
-* `severity` -- **Optional**. A `Severity` string (`info`, `normal`, or `critical`) describing the potential impact of the issue found.
+* `severity` -- **Optional**. A `Severity` string (`info`, `minor`, `major`, `critical`, or `blocker`) describing the potential impact of the issue found.
 * `fingerprint` -- **Optional**. A unique, deterministic identifier for the specific issue being reported to allow a user to exclude it from future analyses.
 
 ##### Descriptions
