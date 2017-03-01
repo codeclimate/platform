@@ -120,7 +120,7 @@ All engines must include an `engine.json` file at `/engine.json`. This file incl
 }
 ```
 
-The following fields are declared the specification file, and all are required:
+The following fields are declared in the specification file, and all are required:
 
 * `name` (`String`) - the name of the package
 * `description` (`String`) - a description of the engine
