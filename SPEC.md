@@ -313,7 +313,7 @@ easily portable between systems, regardless of the programming language they are
 implemented in. We recommend Engine implementors use a `Dockerfile` to automate
 the builds of these images. The `Dockerfile` must follow these specifications:
 
-* The images must specify a `MAINTAINER`.
+* The image must specify a `maintainer` `LABEL`:
 * The `/code` must be declared as a `VOLUME`.
 * The `WORKDIR` must be specified as `/code`
 * A non-root user named `app` must be created with UID and GID 9000 and declared
