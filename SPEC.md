@@ -325,21 +325,25 @@ the builds of these images. The `Dockerfile` must follow these specifications:
 Here is an example of a `Dockerfile` that follows the specifications for an engine written in Node.js:
 
 ```
-FROM node
+FROM node:7.7-alpine
 
-MAINTAINER Michael R. Bernstein
+LABEL maintainer "Your Name <hello@example.com>"
 
-RUN useradd -u 9000 -r -s /bin/false app
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app/
 
-RUN npm install glob
+RUN npm install
 
-WORKDIR /code
+RUN adduser -u 9000 -D app
 COPY . /usr/src/app
+RUN chown -R app:app /usr/src/app
 
 USER app
-VOLUME /code
 
-CMD ["/usr/src/app/bin/fixme"]
+VOLUME /code
+WORKDIR /code
+
+CMD ["/usr/src/app/bin/your-engine"]
 ```
 
 ## Naming convention
