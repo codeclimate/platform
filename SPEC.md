@@ -22,6 +22,7 @@ We welcome your participation and appreciate your patience as we finalize the pl
     - [Resource restrictions](#resource-restrictions)
     - [Security restrictions](#security-restrictions)
 - [Engine specification file](#engine-specification-file)
+- [Checks manifest](#checks-manifest)
 - [Data types](#data-types)
     - [Issues](#issues)
         - [Descriptions](#descriptions)
@@ -31,6 +32,7 @@ We welcome your participation and appreciate your patience as we finalize the pl
         - [Positions](#positions)
     - [Contents](#contents)
     - [Source code traces](#source-code-traces)
+    - [Severity](#severity)
 - [Packaging](#packaging)
 - [Naming convention](#naming-convention)
 
@@ -137,6 +139,49 @@ The `languages` key can have the following values:
 - Note that we follow these spellings exactly, so while [`JavaScript` is a valid spelling of that language](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml#L1642), `javascript` is not.
 - Some commonly used languages spelled properly are: `CSS, Clojure, CoffeeScript, Go, Haskell, Java, JavaScript, PHP, Python, Ruby, SCSS, Scala, Shell`
 
+## Checks manifest
+
+Engines may optionally include a `checks.json` file at `/checks.json`.
+This file includes documentation about every issue that the engine
+checks for.  Here is an example checks manifest:
+
+```json
+{
+  "checks": [
+    {
+      "id": "comma-spacing",
+      "title": "Enforce consistent spacing after commas.",
+      "content": "Commas should always be followed by exactly one space.\n\n    # Good\n    Hi, how are you?\n\n    # Bad\n    I'm fine,thank you.",
+      "category": "Bug Risk",
+      "status": "ready",
+      "tags": ["commas", "punctuation", "one-space"],
+      "severity": "major"
+    },
+    {
+      "id": "periods-spacing",
+      "title": "Enforce consistent spacing after periods.",
+      "content": "Periods should always be followed by exactly two spaces, unless they terminate a line.\n\n    # Good\n    Well played, Cecil.  I like the cut of your jib.\n\n    # Bad\n    Capital. And I yours, good sir.",
+      "category": "Clarity",
+      "status": "deprecated",
+      "tags": ["periods", "punctuation", "two-spaces"],
+      "severity": "minor"
+    }
+  ]
+}
+```
+
+The outer hash contains a single element with an `checks` key pointing
+to an array of checks hashes.  Each check hash contains the following
+fields:
+
+* `id` -- **Required**. A stable identifier to identify the check over time.  For the same check, this should not change between engine versions, even if documentation or implementation details change.  This will probably be the same as `check_name` within a specific [Issue](#issues).
+* `title` -- **Required**. The human-readable name of the check.  This may change freely as the engine is updated.
+* `content` -- **Optional**.  A Markdown string that describes the check.  This will probably be the same as the [Content](#contents) body within a specific issue.
+* `category` -- **Optional**. A [Category](#categories) for the check.
+* `status` -- **Optional**. A string indicating the check's current status in the engine. Possible values are `ready`, `deprecated`, and `beta`. `ready` is the default and will be assumed if this field is not given.
+* `tags` -- **Optional**. An array of tags for use in navigation.  We recommend that these tags be all lowercase, using `-` in places of spaces (i.e. `owasp-top-10`, not `OWASP-Top-10` or `OWASP Top 10`).
+* `severity` -- **Optional**. A [Severity](#severity) for the check.  If the check can return a range of severities, use the severity that is most common.
+
 ## Data Types
 
 ### Issues
@@ -166,7 +211,7 @@ An `issue` represents a single instance of a real or potential code problem, det
 * `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
 * `trace` -- **Optional.** A `Trace` object representing other interesting source code locations related to this issue.
 * `remediation_points` -- **Optional**. An integer indicating a rough estimate of how long it would take to resolve the reported issue.
-* `severity` -- **Optional**. A `Severity` string (`info`, `minor`, `major`, `critical`, or `blocker`) describing the potential impact of the issue found.
+* `severity` -- **Optional**. A [Severity](#severity) for the issue.
 * `fingerprint` -- **Optional**. A unique, deterministic identifier for the specific issue being reported to allow a user to exclude it from future analyses.
 
 #### Descriptions
@@ -304,6 +349,16 @@ An example trace:
 }
 
 ```
+
+### Severity
+
+The severity of a check or issue describes its potential impact.  There are five possible values, from best to worst:
+
+* `info`
+* `minor`
+* `major`
+* `critical`
+* `blocker`
 
 
 ## Packaging
