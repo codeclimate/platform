@@ -29,6 +29,7 @@ We welcome your participation and appreciate your patience as we finalize the pl
         - [Remediation points](#remediation-points)
     - [Locations](#locations)
         - [Positions](#positions)
+    - [Other Locations](#other-locations)
     - [Contents](#contents)
     - [Source code traces](#source-code-traces)
 - [Packaging](#packaging)
@@ -201,7 +202,7 @@ The baseline remediation points value is 50,000, which is the time it takes to f
 
 ### Locations
 
-Locations refer to ranges of a source code file. A Location contains a `path`, a source range, (expressed as `lines` or `positions`), and an optional array of `other_locations`. Here's an example location:
+Locations refer to ranges of a source code file. A Location contains a `path`, a source range, (expressed as `lines` or `positions`). Here's an example location:
 
 ```json
 {
@@ -266,6 +267,23 @@ line of the file.
 
 Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fifth_ character in the file. Importantly, the `offset` is from the beginning of the file, not the beginning of a line. Newline characters (and all characters) count when computing an offset.
 
+### Other Locations
+
+Other locations is an optional array of [Location](#locations) objects:
+
+```json
+"other_locations": [
+  {
+    "path": "foo.rb",
+    "lines": { "begin": 25, "end": 55 }
+  },
+  {
+    "path": "bar.rb",
+    "lines": { "begin": 20, "end": 50 }
+  }
+]
+```
+
 ### Contents
 
 Content gives more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
@@ -279,7 +297,7 @@ Content gives more information about the issue's check, including a description 
 
 Some engines require the ability to refer to other source locations in describing an issue. For this reason, an `Issue` object can have an associated `Trace`, a data structure meant to represent ordered or unordered lists of source code locations. A `Trace` has the following fields:
 
-* `locations` -- **[Location] - Required**. An array of `Location` objects.
+* `locations` -- **[Location] - Required**. An array of [Location](#locations) objects.
 * `stacktrace` -- **Boolean - Optional **. *Default: false* When `true`, this `Trace` object will be treated like an ordered stacktrace by the CLI and the Code Climate UI.
 
 An example trace:
