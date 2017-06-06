@@ -202,7 +202,7 @@ The baseline remediation points value is 50,000, which is the time it takes to f
 
 ### Locations
 
-Locations refer to ranges of a source code file. A Location contains a `path` and a source range, (expressed as `lines` or `positions`). Here's an example location:
+Locations refer to ranges of a source code file. A Location contains a `path` and a source range (expressed as `lines` or `positions`). Here's an example location:
 
 ```json
 {
