@@ -19,6 +19,7 @@ We welcome your participation and appreciate your patience as we finalize the pl
     - [Input](#input)
         - [Which files to analyze](#which-files-to-analyze)
     - [Output](#output)
+    - [Document types](#document-types)
     - [Resource restrictions](#resource-restrictions)
     - [Security restrictions](#security-restrictions)
 - [Engine specification file](#engine-specification-file)
@@ -32,6 +33,7 @@ We welcome your participation and appreciate your patience as we finalize the pl
     - [Other Locations](#other-locations)
     - [Contents](#contents)
     - [Source code traces](#source-code-traces)
+    - [Measurements](#measurements)
 - [Packaging](#packaging)
 - [Naming convention](#naming-convention)
 
@@ -73,16 +75,19 @@ The `include_paths` key will always be present in `config.json`, and must be use
 
 ### Output
 
-* Engines must stream [Issues](#issues) to `STDOUT` in JSON format.
+* Engines must stream [documents](#document_types) to `STDOUT` in JSON format.
 * When possible, results should be emitted as soon as they are computed (streamed, not buffered).
-* Each issue must be terminated by the [null character][null] (`\0` in most programming languages), but can additionally be separated by newlines.
+* Each document must be terminated by the [null character][null] (`\0` in most programming languages), but can additionally be separated by newlines.
 * Unstructured information can be printed on `STDERR` for the purposes of aiding debugging.
   * *Note that `STDERR` output will only be displayed in console output when there is a failure, unless `codeclimate analyze` is run with the `CODECLIMATE_DEBUG` environment variable, e.g. `CODECLIMATE_DEBUG=1 codeclimate analyze`
 * Engines must exit with a zero exit code unless a fatal error in the process occurs.
   * *Note that an engine finding and emitting issues is expected, and not a fatal error - this means that if your engine finds issues, it should still in all cases exit with code zero.*
   * *Note that all results will be discard and the analysis failed if an engine exits with a non-zero exit code.*
 
+### Document types
 
+Two document types are currently permitted: [Issues](#issues) &
+[Measurements](#measurements).
 
 ### Resource restrictions
 
@@ -323,6 +328,20 @@ An example trace:
 
 ```
 
+### Measurements
+
+Measurements are a separate kind of document that engines can emit. Measurements
+are a numeric value bound to a named key. One common use of measurements is
+representing internal engine metrics. For example, an engine may emit a
+measurement representing the rate of parsing errors during an analysis.
+
+```json
+{
+  "type": "measurement",
+  "name": "foo.bar",
+  "value": 42
+}
+```
 
 ## Packaging
 
