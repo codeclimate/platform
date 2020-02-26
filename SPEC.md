@@ -345,7 +345,7 @@ Here is an example of a `Dockerfile` that follows the specifications for an engi
 ```
 FROM node:7.7-alpine
 
-LABEL maintainer "Your Name <hello@example.com>"
+LABEL maintainer="Your Name <hello@example.com>"
 
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
