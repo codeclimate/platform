@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/incident",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Incident",
+  "description": "Incidents are a normalized, de-duplicated event. It can be thought of as a problem or an issue within your service that needs to be addressed and resolved.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "Incident"
+    },
+    "id": {
+      "description": "The unique ID of this incident from the incident response platform.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "description": "The human-readable title of this incident.",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "The URL for a human to view this incident.",
+      "type": "string",
+      "format": "uri"
+    },
+    "number": {
+      "description": "The number identifying this incident.",
+      "type": "integer"
+    },
+    "status": {
+      "description": "The status of this incident",
+      "enum": ["triggered", "acknowledged", "resolved"]
+    },
+    "createdAt": {
+      "description": "The time this incident began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this incident was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this incident was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "_type", "id", "self", "title", "status", "createdAt"
+  ]
+}
+

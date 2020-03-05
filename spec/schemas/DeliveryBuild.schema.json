@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/delivery-build",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "DeliveryBuild",
+  "description": "A Build run within a CI system.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "DeliveryBuild"
+    },
+    "id": {
+      "description": "The unique ID of this Build.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "number": {
+      "description": "The number identifying this Build, if available",
+      "type": "integer"
+    },
+    "workflow": {
+      "description": "The `self` URI of the related Workflow, or a nested Workflow record, if it exists.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/delivery-workflow" }
+      ]
+    },
+    "repository": {
+      "description": "The `self` URI of the Repository this Build ran for, or a nested Repository record.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/repository" }
+      ]
+    },
+    "state": {
+      "description": "The state of the Build.",
+      "type": "string",
+      "enum": ["created", "running", "errored", "complete", "canceled"]
+    },
+    "commitOid": {
+      "description": "The oid of the Commit this Build ran on, if present.",
+      "type": "string"
+    },
+    "branch": {
+      "description": "The name of the branch this Build ran on, if present.",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "The URL to view this Build.",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this build was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this build was last updated.",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "description": "The time this build finished.",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time build was deleted.",
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  },
+  "required": ["_type", "id", "self", "repository", "state", "commitOid"]
+}
+

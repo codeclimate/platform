@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/repository",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Repository",
+  "description": "A code repository.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Repository"
+    },
+    "id": {
+      "description": "The unique ID of this repository.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "owner": {
+      "description": "The owning entity of the repository - usually an organization or a user.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The id of the owner.",
+          "type": "string"
+        },
+        "type": {
+          "description": "What type of owner this is.",
+          "type": "string",
+          "enum": ["user", "organization"]
+        },
+        "name": {
+          "description": "The owner's canonical name, e.g. a username.",
+          "type": "string"
+        },
+        "htmlUrl": {
+          "description": "A web URL for this owner.",
+          "type": "string",
+          "format": "uri"
+        },
+        "avatarUrl": {
+          "description": "An avatar for this owner.",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [ "id", "type", "name" ]
+    },
+    "name": {
+      "description": "The name of the repository",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "The URL of this repository on the web",
+      "type": "string",
+      "format": "uri"
+    },
+    "defaultBranch": {
+      "description": "The default branch of this repository",
+      "type": "string",
+      "default": "master"
+    },
+    "languages": {
+      "description": "Languages used in this array",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "fork": {
+      "description": "A flag to mark this repository as a fork",
+      "type": "boolean"
+    },
+    "private": {
+      "description": "A flag to mark this repository as private (if false, that indicates the repository is public)",
+      "type": "boolean"
+    },
+    "createdAt": {
+      "description": "The time this repository was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this repository was updated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this repository was deleted",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required":  ["_type", "id", "self", "owner", "name"]
+}
+

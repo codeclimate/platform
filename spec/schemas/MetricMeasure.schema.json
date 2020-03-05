@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/metric-measure",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "MetricMeasure",
+  "description": "A Metric value as of a point in time.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "MetricMeasure"
+    },
+    "id": {
+      "description": "The unique ID of this metric measure.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "metric": {
+      "description": "The `self` URI of the Metric this test commit to, or a nested Metric record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/metric" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "value": {
+      "description": "The value of the metric measure.",
+      "type": "integer"
+    },
+    "time": {
+      "description": "The point in time of the metric measure.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "description": "The time the metric measure was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time the metric measure was updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time the metric measure was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_type", "id", "self", "metric"]
+}

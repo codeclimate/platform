@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/stream",
+  "title": "Stream",
+  "type": "object",
+  "additonalProperties": false,
+  "description": "Streams are data sources that can be subscribed to.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Stream"
+    },
+    "id": {
+      "type": "string",
+      "description": "An ID for this stream. Should be unique within the context of this connector for a given configuration."
+    },
+    "self": {
+      "description": "The canonical URL for this stream",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "type": "string",
+      "description": "A name for this stream"
+    },
+    "htmlUrl": {
+      "description": "The URL for a human to view this stream",
+      "type": "string",
+      "format": "uri"
+    },
+    "description": {
+      "description": "A description of this stream",
+      "type": "string"
+    },
+    "record": {
+      "description": "A stream may be a representation of another record - use the URI of that record here if desired.",
+      "type": "string",
+      "format": "uri"
+    },
+    "recordType": {
+      "description": "The `type` of the record referred to by the `record` URI, if present",
+      "type": "string"
+    },
+    "subscribed": {
+      "type": "boolean",
+      "description": "Represents if the stream has been subscribed to by a user within Code Climate"
+    }
+  },
+  "required":  ["_type", "self", "id", "name"]
+}

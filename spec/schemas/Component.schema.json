@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/component",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Component",
+  "description": "Components are conceptual units of software, defined as a set of source files, which are composed into Applications. A Component might correspond directly with a Repository, consist of a subset of files within a monorepo, or be comprised of the union set of files spread across multiple repositories.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Component"
+    },
+    "id": {
+      "description": "The unique ID of this Component.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The component's name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "The component's description.",
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "The time this component was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this component was updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this component was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self", "name", "files" ]
+}

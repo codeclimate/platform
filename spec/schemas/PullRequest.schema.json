@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/pull-request",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "PullRequest",
+  "description": "A Pull Request consists of a set of commits.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "PullRequest"
+    },
+    "id": {
+      "description": "The unique ID of this pull request.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "repository": {
+      "description": "The `self` URI of the repository, or a nested repository record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/repository" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "author": {
+      "description": "The `self` URI of the author, or a nested author record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "state": {
+      "description": "The state of a pull request.",
+      "enum": ["open", "closed", "merged"]
+    },
+    "headRef": {
+      "description": "The head ref associated with a pull request.",
+      "type": "string"
+    },
+    "headSha": {
+      "description": "The head sha associated with a pull request.",
+      "type": "string"
+    },
+    "baseRef": {
+      "description": "The base ref associated with a pull request.",
+      "type": "string"
+    },
+    "baseSha": {
+      "description": "The base sha associated with a pull request.",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "The URL to view this pull request.",
+      "type": "string",
+      "format": "uri"
+    },
+    "statistics": {
+      "description": "pull request statistics.",
+      "type": "object",
+      "properties": {
+        "additionsCount": {
+          "description": "Lines of code added in this pull request.",
+          "type": "integer"
+        },
+        "deletionsCount": {
+          "description": "Lines of code deleted in this pull request.",
+          "type": "integer"
+        },
+        "commitsCount": {
+          "description": "Total commits in this pull request.",
+          "type": "integer"
+        },
+        "changedFilesCount": {
+          "description": "Total number of changed files in this pull request.",
+          "type": "integer"
+        }
+      }
+    },
+    "mergedAt": {
+      "description": "The time the pull request was merged.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "description": "The time the pull request was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time the pull request was updated.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self", "repository", "author", "state" ]
+}

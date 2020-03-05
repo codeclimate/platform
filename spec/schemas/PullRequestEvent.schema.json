@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/pull-request-event",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "PullRequestEvent",
+  "description": "A Pull Request Event is an event that's related to a Pull Request.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "PullRequestEvent"
+    },
+    "id": {
+      "description": "The unique ID of this pull request event.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "pullRequest": {
+      "description": "The `self` URI of the PullRequest, or a nested PullRequest record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/pull-request" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "eventType": {
+      "description": "The type of pull request event.",
+      "type": "string",
+      "enum": ["Commit", "ReviewRequestedEvent", "IssueComment", "PullRequestReview", "MergedEvent", "HeadRefForcePushedEvent", "AssignedEvent", "LabeledEvent", "ClosedEvent", "ReopenedEvent"]
+    },
+    "createdAt": {
+      "description": "The time the pull request event was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time the pull request event was updated.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self", "eventType", "pullRequest" ]
+}

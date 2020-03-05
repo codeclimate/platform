@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/branch",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Branch",
+  "description": "Named reference within Repository.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Branch"
+    },
+    "name": {
+      "description": "The name of the branch.",
+      "type": "string"
+    },
+    "repository": {
+      "description": "The `self` URI of the repository this branch applies to, or a nested repository record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/repository" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "deletedAt": {
+      "description": "The time this branch was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type" ]
+}

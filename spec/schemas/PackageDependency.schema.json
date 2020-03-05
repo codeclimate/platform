@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/package-dependency",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "PackageDependency",
+  "description": "A package definition dependency.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "PackageDependency"
+    },
+    "id": {
+      "description": "The unique ID of this package dependency.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "package": {
+      "description": "The `self` URI of the package, or a nested package record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/package" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "dependency": {
+      "description": "The specified dependency.",
+      "type": "string"
+    },
+    "kind": {
+      "description": "The kind of package dependency.",
+      "type": "string",
+      "enum": ["development", "production"]
+    },
+    "createdAt": {
+      "description": "The time package dependency was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time package dependency was updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time package dependency was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self" ]
+}

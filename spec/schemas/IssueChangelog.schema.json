@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/issue-changelog",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "IssueChangelog",
+  "description": "Changes related to Issues.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "IssueChangelog"
+    },
+    "id": {
+      "description": "The unique ID of this issue changelog.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "description": "The human-readable title of this issue changelog.",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "The URL for a human to view this issue changelog.",
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "description": "The status of this issue changelog.",
+      "enum": ["triggered", "acknowledged", "resolved"]
+    },
+    "description": {
+      "description": "The description issue changelog.",
+      "type": "string"
+    },
+    "from": {
+      "description": "The from issue state of an issue changelog.",
+      "type": "string"
+    },
+    "to": {
+      "description": "The to issue state of an issue changelog.",
+      "type": "string"
+    },
+    "author": {
+      "description": "The `self` URI of the author, or a nested author record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "createdAt": {
+      "description": "The time this issue changelog began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this issue changelog was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this issue changelog was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "_type", "id", "self", "title", "status", "createdAt"
+  ]
+}
+

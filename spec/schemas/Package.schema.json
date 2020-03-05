@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/package",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Package",
+  "description": "The package definition.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Package"
+    },
+    "id": {
+      "description": "The unique ID of this package.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The name of this package.",
+      "type": "string"
+    },
+    "version": {
+      "description": "The version of this package.",
+      "type": "string"
+    },
+    "license": {
+      "description": "The license for this package.",
+      "type": "string"
+    },
+    "packageType": {
+      "description": "The type of package.",
+      "type": "string",
+      "enum": ["gem", "docker"]
+    },
+    "creator": {
+      "description": "The `self` URI of the creator, or a nested creator record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "createdAt": {
+      "description": "The time package was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time package was updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time package was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self" ]
+}

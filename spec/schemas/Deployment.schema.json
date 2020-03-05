@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/deployment",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Deployment",
+  "description": "Deployments push changes to a runtime Evironment.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Deployment"
+    },
+    "id": {
+      "description": "The unique ID of this deployment",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record",
+      "type": "string",
+      "format": "uri"
+    },
+    "environment": {
+      "description": "The `self` URI of the related environment, or a nested environment record, if it exists.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/environment" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "originalEnvironment": {
+      "description": "The `self` URI of the related staging environment if promoting to production, or a nested environment record, if it exists.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/environment" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "commitOid": {
+      "description": "The oid of the Commit this deployment ran on",
+      "type": "string"
+    },
+    "branch": {
+      "description": "The name of the branch this deployment is associated with",
+      "type": "string"
+    },
+    "version": {
+      "description": "The deployment version",
+      "type": "string"
+    },
+    "packages": {
+      "description": "Packages associated with this deployment",
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "package": {
+          "description": "The `self` URI of the package, or a nested package record.",
+          "oneOf": [
+            { "$ref": "https://platform.codeclimate.com/schemas/package" },
+            { "type": "string", "format": "uri" }
+          ]
+        }
+      }
+    },
+    "creator": {
+      "description": "The `self` URI of the Actor who created the deployment, or a nested Actor record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "htmlUrl": {
+      "description": "The URL to view this deployment",
+      "type": "string",
+      "format": "uri"
+    },
+    "statusUrl": {
+      "description": "The URL to view the status of this deployment",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this deployment was created",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self" ]
+}

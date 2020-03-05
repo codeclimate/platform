@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/commit",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Commit",
+  "description": "Adds latest changes to the source code.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Commit"
+    },
+    "id": {
+      "description": "The unique ID of this commit.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "author": {
+      "description": "The `self` URI of the author, or a nested author record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "committer": {
+      "description": "The `self` URI of the committer this test commit to, or a nested committer record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "message": {
+      "description": "The commit message.",
+      "type": "string"
+    },
+    "tree": {
+      "description": "The commit tree.",
+      "type": "string"
+    },
+    "parents": {
+      "description": "The commit parent.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "statistics": {
+      "description": "commit statistics.",
+      "type": "object",
+      "properties": {
+        "additions": {
+          "description": "Lines of code added in this commit.",
+          "type": "integer"
+        },
+        "deletions": {
+          "description": "Lines of code deleted in this commit.",
+          "type": "integer"
+        },
+        "total": {
+          "description": "Total lines of code in this commit.",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": [ "_type", "id", "self", "oid", "message" ]
+}
