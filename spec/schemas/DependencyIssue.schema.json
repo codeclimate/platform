@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/dependency-issue",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "DependencyIssue",
+  "description": "An issue with a dependency, such as a security vulnerability or a licensing issue.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "DependencyIssue"
+    },
+    "id": {
+      "description": "The unique ID of this dependency issue.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "description": "The title of this dependency issue.",
+      "type": "string"
+    },
+    "message": {
+      "description": "The message of this dependency issue.",
+      "type": "string"
+    },
+    "fingerprint": {
+      "description": "The fingerprint of this dependency issue.",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of this dependency issue.",
+      "enum": ["open", "closed"]
+    },
+    "statusDetails": {
+      "description": "The details of this dependency issue's status.",
+      "type": "string"
+    },
+    "statusUpdatedAt": {
+      "description": "The time the dependency issue was updated at.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "statusUpdatedBy": {
+      "description": "The `self` URI of the actor, or a nested actor record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "rawDetails": {
+      "description": "Details related to this dependency issue.",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "A URL for this dependency issue.",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this component was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this component was updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this component was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self", "title" ]
+}

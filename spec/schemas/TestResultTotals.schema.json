@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/test-result-totals",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "TestResultTotals",
+  "description": "The result of a test from a Build",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "TestResultTotals"
+    },
+    "id": {
+      "description": "The unique ID of this test result record.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "build": {
+      "description": "The `self` URI of the related Build, or a nested Build record.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/delivery-build" }
+      ]
+    },
+    "job": {
+      "description": "The `self` URI of the related Job, or a nested Job record.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/delivery-job" }
+      ]
+    },
+    "totalTests": {
+      "description": "The total number of tests run",
+      "type": "integer"
+    },
+    "testsFailed": {
+      "description": "The number of tests run which failed",
+      "type": "integer"
+    }
+  },
+  "required": ["_type", "id", "self", "build", "totalTests", "testsFailed"]
+}
+

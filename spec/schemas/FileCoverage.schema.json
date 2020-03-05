@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/file-coverage",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "FileCoverage",
+  "description": "Information about test coverage of a file within a commit.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "FileCoverage"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "repository": {
+      "description": "The `self` URI of the Repository this test coverage applies to, or a nested Repository record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/repository" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "commitOid": {
+      "description": "The commit oid this test coverage is for.",
+      "type": "string"
+    },
+    "file": {
+      "description": "The path of the file for these test results.",
+      "type": "string"
+    },
+    "lineHits": {
+      "description": "The number of hits on each line in the file, starting with line 1. An entry for every line should be present.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "integer" },
+          { "type": "null" }
+        ]
+      }
+    },
+    "filesCount": {
+      "description": "The number of files.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "htmlUrl": {
+      "description": "The URL to view this coverage.",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this coverage was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this coverage was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time coverage was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_self", "self", "repository", "commitOid", "lineHits"]
+}
+

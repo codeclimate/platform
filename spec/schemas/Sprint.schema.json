@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/sprint",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Sprint",
+  "description": "A Sprint is a time-boxed period in which in incremental piece of work is completed.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Sprint"
+    },
+    "id": {
+      "description": "The unique ID of this sprint",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The name of this sprint",
+      "type": "string"
+    },
+    "state": {
+      "description": "The state of the sprint",
+      "type": "string",
+      "enum": ["closed", "active"]
+    },
+    "goal": {
+      "description": "The goal of this sprint",
+      "type": "string"
+    },
+    "endTime": {
+      "description": "The end time of this sprint",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "createdAt": {
+      "description": "The time this sprint was created",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this sprint was updated",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this sprint was deleted",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "completeTime": {
+      "description": "The complete time of this sprint",
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "board": {
+      "description": "The `self` URI of the board, or a nested board record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/board" },
+        { "type": "string", "format": "uri" }
+      ]
+    }
+  },
+  "required": [ "_type", "id", "self", "name", "state" ]
+}

@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/on-call",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "OnCall",
+  "description": "OnCalls are a contiguous unit of time for which a user will be on call. During an on-call, the user is expected to bear responsibility for responding to any notifications he or she receives and working to resolve the associated incident(s).",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "OnCall"
+    },
+    "id": {
+      "description": "The unique ID of this on call.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "actor": {
+      "description": "The `self` URI of the actor, or a nested actor record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "schedule": {
+      "description": "On call schedule.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique ID for the on call schedule.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the on call schedule.",
+          "type": "string"
+        },
+        "htmlUrl": {
+          "description": "An URL for this on call schedule.",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "escalationPolicy": {
+      "description": "Escalation Policy for on call rotation.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique ID for the Escalation Policy.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the Escalation Policy.",
+          "type": "string"
+        },
+        "htmlUrl": {
+          "description": "An URL for this Escalation Policy.",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "escalationLevel": {
+      "description": "The escalation level for on call rotation.",
+      "type": "string"
+    },
+    "start": {
+      "description": "The time the on call rotation starts.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "description": "The time the on call rotation ends.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "description": "The time on call was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time on call was updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time on call was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self" ]
+}

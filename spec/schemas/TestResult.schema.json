@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/test-result",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "TestResult",
+  "description": "The result of a test from a Build",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "TestResult"
+    },
+    "id": {
+      "description": "The unique ID of this test result record.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "build": {
+      "description": "The `self` URI of the related Build, or a nested Build record.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/delivery-build" }
+      ]
+    },
+    "job": {
+      "description": "The `self` URI of the related Job, or a nested Job record.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/delivery-job" }
+      ]
+    },
+    "state": {
+      "description": "The state of the test result",
+      "type": "string",
+      "enum": ["passed", "failed"]
+    },
+    "file": {
+      "description": "The file in which this test is defined.",
+      "type": "string"
+    },
+    "message": {
+      "description": "The associated message for this result.",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the test.",
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "The time this build was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this build was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "description": "The time this build finished.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time build was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_type", "id", "self", "build", "file", "state", "name"]
+}
+

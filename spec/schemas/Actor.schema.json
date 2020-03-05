@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/actor",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Actor",
+  "description": "Actors are humans or non-humans that perform actions.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Actor"
+    },
+    "id": {
+      "description": "The unique ID of this actor",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The name of the actor",
+      "type": "string"
+    },
+    "email": {
+      "description": "The name of the email",
+      "type": "string"
+    },
+    "bot": {
+      "type": "boolean",
+      "description": "Indicates the actor is not a human"
+    },
+    "htmlUrl": {
+      "type": "string",
+      "description": "A web URL for this actor",
+      "format": "uri"
+    },
+    "avatarUrl": {
+      "type": "string",
+      "description": "a URL for an avatar for this actor",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time actor repository was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this actor was updated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this actor was deleted",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_type", "id", "self"]
+}

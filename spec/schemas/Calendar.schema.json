@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/calendar",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Calendar",
+  "description": "Calendars are groups of CalendarEvents.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Calendar"
+    },
+    "id": {
+      "description": "The unique ID of this calendar.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "description": "The title of this calendar.",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of this calendar.",
+      "type": "integer"
+    },
+    "timeZone": {
+      "description": "Timezone for calendar (formatted as an IANA Time Zone Database name).",
+      "type": "string"
+    }
+  },
+  "required": [ "_type", "id", "self", "title" ]
+}

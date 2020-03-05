@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/environment",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Environment",
+  "description": "Represents a running instance of an Application, like production or staging.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Environment"
+    },
+    "id": {
+      "description": "The unique ID of this environment",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The name of the environment",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of the environment",
+      "type": "string"
+    },
+    "transient": {
+      "description": "Whether the environment is transient",
+      "type": "boolean"
+    },
+    "production": {
+      "description": "Whether the environment is production",
+      "type": "boolean"
+    },
+    "htmlUrl": {
+      "description": "The URL to view this environment",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this environment was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this environment was updated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this environment was deleted",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self", "name" ]
+}

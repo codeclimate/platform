@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/calendar-event",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "CalendarEvent",
+  "description": "CalendarEvent is an event in a Calendar.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "CalendarEvent"
+    },
+    "id": {
+      "description": "The unique ID of this calendar event.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "summary": {
+      "description": "A summary of the calendar event.",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of the calendar event.",
+      "type": "string",
+      "enum": ["confirmed", "tentative", "cancelled"]
+    },
+    "description": {
+      "description": "The description of this calendar.",
+      "type": "string"
+    },
+    "location": {
+      "description": "The location of the event.",
+      "type": "string"
+    },
+    "visibility": {
+      "description": "The timezone of this calendar.",
+      "type": "string",
+      "enum": ["default", "public", "private"]
+    },
+    "start": {
+      "description": "Start of the calendar event.",
+      "type": "object",
+      "properties": {
+        "date": {
+          "description": "For all day events.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateTime": {
+          "description": "For non-all day events.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "timeZone": {
+          "description": "Timezone for start (formatted as an IANA Time Zone Database name).",
+          "type": "string"
+        }
+      }
+    },
+    "end": {
+      "description": "End of the calendar event.",
+      "type": "object",
+      "properties": {
+        "date": {
+          "description": "For all day events.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateTime": {
+          "description": "For non-all day events.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "timeZone": {
+          "description": "Timezone for start (formatted as an IANA Time Zone Database name).",
+          "type": "string"
+        }
+      }
+    },
+    "recurringEvent": {
+      "description": "If event is recurring, URL to the recurring event.",
+      "type": "string",
+      "format": "uri"
+    },
+    "attendees": {
+      "description": "Attendees",
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "author": {
+          "description": "The `self` URI of the author, or a nested author record.",
+          "oneOf": [
+            { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+            { "type": "string", "format": "uri" }
+          ]
+        }
+      }
+    },
+    "attendeesOmitted": {
+      "description": "If attendee information was ommitted due to too many attendees.",
+      "type": "boolean"
+    }
+  },
+  "required": [ "_type", "id", "self", "start.timeZone", "end.timeZone" ]
+}

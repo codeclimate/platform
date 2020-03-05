@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/project",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Project",
+  "description": "Projects consist of a set of Issues.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "Project"
+    },
+    "id": {
+      "description": "The unique ID of this project.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The name of the project.",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of the project.",
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "The time this project began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this project was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this project was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "_type", "id", "self", "createdAt", "updatedAt"
+  ]
+}
+

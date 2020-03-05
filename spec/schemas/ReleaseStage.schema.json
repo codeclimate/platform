@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/release-stage",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "ReleaseStage",
+  "description": "ReleaseStages are destinations that Packages can be Released to e.g. to a named Gem hosted at RubyGems.org, or the production branch within a Docker repostiory.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "ReleaseStage"
+    },
+    "id": {
+      "description": "The unique ID of this release stage",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record",
+      "type": "string",
+      "format": "uri"
+    },
+    "packageRepository": {
+      "description": "Link to the package repository",
+      "type": "string",
+      "format": "uri"
+    },
+    "channel": {
+      "description": "The channel of the release stage",
+      "type": "string"
+    },
+    "htmlUrl": {
+      "description": "The URL for a human to view this release stage",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time the release stage was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time the release stage was updated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time the release stage was deleted",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self" ]
+}

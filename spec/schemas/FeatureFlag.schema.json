@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/feature-flag",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "FeatureFlag",
+  "description": "FeatureFlags allow changes to be gradually rolled out to an Environment after a Deployment.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "FeatureFlag"
+    },
+    "id": {
+      "description": "The unique ID of this feature flag.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "description": "The name of the feature flag.",
+      "type": "string"
+    },
+    "kind": {
+      "description": "The kind of feature flag.",
+      "type": "string"
+    },
+    "key": {
+      "description": "The feature flag key.",
+      "type": "string"
+    },
+    "temporary": {
+      "description": "Whether the feature flag is temporary.",
+      "type": "boolean"
+    },
+    "maintainer": {
+      "description": "The `self` URI of the maintainer this test commit to, or a nested maintainer record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "htmlUrl": {
+      "description": "The URL to view this environment.",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this feature flag was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this feature flag was updated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this feature flag was deleted",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [ "_type", "id", "self", "name" ]
+}

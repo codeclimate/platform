@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/coverage-totals",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "CoverageTotals",
+  "description": "Information about test coverage of a commit.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "CoverageTotals"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "repository": {
+      "description": "The `self` URI of the Repository this test coverage applies to, or a nested Repository record.",
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://platform.codeclimate.com/schemas/repository" }
+      ]
+    },
+    "commitOid": {
+      "description": "The commit oid this test coverage is for.",
+      "type": "string"
+    },
+    "coverage": {
+      "description": "The coverage of this test coverage result, as a percentage",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "filesCount": {
+      "description": "The number of files.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "linesCount": {
+      "description": "The total number of lines under test.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "linesHitCount": {
+      "description": "The number of lines hit by the tests.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "linesMissedCount": {
+      "description": "The number of lines missed by the tests.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "branchesCount": {
+      "description": "The number of branches.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "methodsCount": {
+      "description": "The number of methods tested.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "htmlUrl": {
+      "description": "The URL to view this coverage.",
+      "type": "string",
+      "format": "uri"
+    },
+    "createdAt": {
+      "description": "The time this coverage was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this coverage was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time coverage was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["_type", "self", "repository", "commitOid", "coverage"]
+}

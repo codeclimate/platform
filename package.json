@@ -1,0 +1,12 @@
+{
+  "name": "codeclimate-platform-spec",
+  "version": "0.0.1",
+  "description": "Code Climate Engineering Data Platform",
+  "license": "Apache-2.0",
+  "scripts": {
+    "schema-md": "jsonschema2md -d ./spec/schemas/ -x - -o docs/schemas/"
+  },
+  "devDependencies": {
+    "@adobe/jsonschema2md": "^4.0.13"
+  }
+}

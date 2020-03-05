@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/commit-check",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "CommitCheck",
+  "description": "A status rendered on a Commit e.g. from a CI/CD or code quality tool.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "CommitCheck"
+    },
+    "id": {
+      "description": "The unique ID of this commit check.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "avatarUrl": {
+      "description": "An avatar for this commit check.",
+      "type": "string",
+      "format": "uri"
+    },
+    "commitOid": {
+      "description": "The oid of the Commit associated with this commit check.",
+      "type": "string"
+    },
+    "context": {
+      "description": "The context of the commit check.",
+      "type": "string"
+    },
+    "state": {
+      "description": "The state of the commit check.",
+      "type": "string",
+      "enum": ["passed", "failed"]
+    },
+    "description": {
+      "description": "The description of this commit check.",
+      "type": "integer"
+    },
+    "createdAt": {
+      "description": "The time the commit check was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "creator": {
+      "description": "The `self` URI of the related creator, or a nested creator record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "targetUrl": {
+      "description": "Target url.",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [ "_type", "id", "self", "commitOid", "context", "state" ]
+}

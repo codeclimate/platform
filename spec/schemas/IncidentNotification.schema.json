@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/incident-notification",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "IncidentNotification",
+  "description": "IncidentNotifications are a 'page' results from an incident being triggered or escalated.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "IncidentNotification"
+    },
+    "id": {
+      "description": "The unique ID of this incidentNotification from the incident response platform.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "incident": {
+      "description": "The `self` URI of the related Incident, or a nested Incident record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/incident" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "recipient": {
+      "description": "The recipient of the incident notification.",
+      "type": "string"
+    },
+    "kind": {
+      "description": "The kind of incident notification.",
+      "type": "string",
+      "enum": ["phone", "email", "text", "push"]
+    },
+    "createdAt": {
+      "description": "The time this incident notification began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this incident notification was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this incident notification was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id", "self", "incident", "kind", "createdAt"
+  ]
+}
+

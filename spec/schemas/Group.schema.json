@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/group",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "Group",
+  "description": "A group of actors.",
+  "properties": {
+    "_type": {
+      "type": "string",
+      "const": "Group"
+    },
+    "id": {
+     "description": "The unique ID of this group.",
+     "type": "string"
+    },
+    "self": {
+     "description": "The canonical URI for this record.",
+     "type": "string",
+     "format": "uri"
+    },
+    "name": {
+     "description": "The name of the group.",
+     "type": "string"
+    },
+    "description": {
+     "description": "The description of the group.",
+     "type": "string"
+    },
+    "members": {
+     "type": "array",
+     "description": "URLs of actors.",
+     "items": { "type": "string", "format": "uri" }
+    },
+    "htmlUrl": {
+     "type": "string",
+     "description": "A web URL for this group.",
+     "format": "uri"
+    },
+    "createdAt": {
+     "description": "The time the actor group was created.",
+     "type": "string",
+     "format": "date-time"
+    },
+    "updatedAt": {
+     "description": "The time this group was updated.",
+     "type": "string",
+     "format": "date-time"
+    },
+    "deletedAt": {
+     "description": "The time this group was deleted.",
+     "type": "string",
+     "format": "date-time"
+    }
+   },
+   "required": [ "_type", "id", "self", "name" ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://platform.codeclimate.com/schemas/issue-comment",
+  "type": "object",
+  "additonalProperties": false,
+  "title": "IssueComment",
+  "description": "A comment left on an Issue.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "IssueComment"
+    },
+    "id": {
+      "description": "The unique ID of this issue comment.",
+      "type": "string"
+    },
+    "self": {
+      "description": "The canonical URI for this record.",
+      "type": "string",
+      "format": "uri"
+    },
+    "htmlUrl": {
+      "description": "The URL for a human to view this issue comment.",
+      "type": "string",
+      "format": "uri"
+    },
+    "body": {
+      "description": "The body of the issue comment.",
+      "type": "string"
+    },
+    "author": {
+      "description": "The `self` URI of the Author this test commit to, or a nested Author record.",
+      "oneOf": [
+        { "$ref": "https://platform.codeclimate.com/schemas/actor" },
+        { "type": "string", "format": "uri" }
+      ]
+    },
+    "createdAt": {
+      "description": "The time this issue comment began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "description": "The time this issue comment was last updated.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "description": "The time this issue comment was deleted.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "_type", "id", "self", "createdAt", "updatedAt"
+  ]
+}
+
