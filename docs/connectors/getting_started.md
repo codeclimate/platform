@@ -22,7 +22,7 @@ and how to publish it.
 For a detailed overview of the Data Schema Connectors Specification,
 check out the [Reference](docs/connecotrs/reference.md).
 
-## Example implementations
+## Reference implementations
 
 - PagerDuty: https://github.com/codeclimate/codeclimate-connector-pagerduty
 - CodeCov https://github.com/codeclimate/codeclimate-connector-codecov
