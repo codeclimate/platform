@@ -1,6 +1,6 @@
 # Code Climate Engine
 
-This repository contains the definition of the Code Climate Engine specification. This includes technical details about how to implement a static analysis engine compatible with the Code Climate ecosystem of tools, including the ability to run it locally as well as on [CodeClimate.com](https://codeclimate.com/). See [SPEC.md](SPEC.md) for the actual specification.
+This repository contains the definition of the Code Climate Engine specification. This includes technical details about how to implement a static analysis engine compatible with the Code Climate ecosystem of tools, including the ability to run it locally as well as on [CodeClimate.com](https://codeclimate.com/). See [SPEC.md](../../spec/analyzers/SPEC.md) for the actual specification.
 
 ## What is a Code Climate Engine?
 
