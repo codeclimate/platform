@@ -153,6 +153,7 @@ An `issue` represents a single instance of a real or potential code problem, det
   "categories": ["Complexity"],
   "location": Location,
   "other_locations": [Location],
+  "trace": Trace,
   "remediation_points": 50000,
   "severity": Severity,
   "fingerprint": "abcd1234"
@@ -165,6 +166,7 @@ An `issue` represents a single instance of a real or potential code problem, det
 * `content` -- **Optional**. A markdown snippet describing the issue, including deeper explanations and links to other resources.
 * `categories` -- **Required**. At least one category indicating the nature of the issue being reported.
 * `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
+* `other_locations` -- **Optional, deprecated.** Use `trace` instead.
 * `trace` -- **Optional.** A `Trace` object representing other interesting source code locations related to this issue.
 * `remediation_points` -- **Optional**. An integer indicating a rough estimate of how long it would take to resolve the reported issue.
 * `severity` -- **Optional**. A `Severity` string (`info`, `minor`, `major`, `critical`, or `blocker`) describing the potential impact of the issue found.
@@ -267,23 +269,6 @@ line of the file.
 
 Offsets, however are 0-based. A Position of `{ "offset": 4 }` represents the _fifth_ character in the file. Importantly, the `offset` is from the beginning of the file, not the beginning of a line. Newline characters (and all characters) count when computing an offset.
 
-### Other Locations
-
-Other locations is an optional array of [Location](#locations) objects:
-
-```json
-"other_locations": [
-  {
-    "path": "foo.rb",
-    "lines": { "begin": 25, "end": 55 }
-  },
-  {
-    "path": "bar.rb",
-    "lines": { "begin": 20, "end": 50 }
-  }
-]
-```
-
 ### Contents
 
 Content gives more information about the issue's check, including a description of the issue, how to fix it, and relevant links. They are expressed as a hash with a `body` key. The value of this key should be a [Markdown](http://daringfireball.net/projects/markdown/) document. For example:
@@ -320,7 +305,6 @@ An example trace:
     }],
   "stacktrace": true
 }
-
 ```
 
 
