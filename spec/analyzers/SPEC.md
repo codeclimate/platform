@@ -165,7 +165,7 @@ An `issue` represents a single instance of a real or potential code problem, det
 * `content` -- **Optional**. A markdown snippet describing the issue, including deeper explanations and links to other resources.
 * `categories` -- **Required**. At least one category indicating the nature of the issue being reported.
 * `location` -- **Required**. A `Location` object representing the place in the source code where the issue was discovered.
-* `other_locations` -- **Optional, deprecated.** Use `trace` instead.
+* `other_locations` -- **Optional, deprecated.** _Use `trace` instead._ Other locations is an optional array of [`Location`](#locations) objects.
 * `trace` -- **Optional.** A `Trace` object representing other interesting source code locations related to this issue.
 * `remediation_points` -- **Optional**. An integer indicating a rough estimate of how long it would take to resolve the reported issue.
 * `severity` -- **Optional**. A `Severity` string (`info`, `minor`, `major`, `critical`, or `blocker`) describing the potential impact of the issue found.
