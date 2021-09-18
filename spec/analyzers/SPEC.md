@@ -29,7 +29,6 @@ We welcome your participation and appreciate your patience as we finalize the pl
         - [Remediation points](#remediation-points)
     - [Locations](#locations)
         - [Positions](#positions)
-    - [Other Locations](#other-locations)
     - [Contents](#contents)
     - [Source code traces](#source-code-traces)
 - [Packaging](#packaging)
